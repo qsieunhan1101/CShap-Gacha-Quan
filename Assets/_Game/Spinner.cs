@@ -48,10 +48,11 @@ public class Spinner : MonoBehaviour
 
     void startSpinning()
     {
+        stopAt = Random.Range(1,12).ToString();
         speed = speedMax;
         spin = true;
         stop = false;
-        time = Random.Range(4, 6);
+        time = Random.Range(2, 4);
 
     }
 
@@ -80,6 +81,8 @@ public class Spinner : MonoBehaviour
         if (speed < 0)
         {
             speed = 0;
+            UICanvas.instance.panel.SetActive(true);
+            UICanvas.instance.text.text = $"Score: {stopAt}";
         }
     }
 }
