@@ -1,17 +1,16 @@
-using System;
-using TMPro;
 using UnityEngine;
 
 public class Spinner : MonoBehaviour
 {
-    public float speed = 700;
+    [SerializeField] float speed = 0;
     [SerializeField] private float speedMax = 700;
     [SerializeField] string stopAt = "4";
     [SerializeField] bool stop = false;
     [SerializeField] bool spin = true;
-    private float slowDown = 7f;
+    [SerializeField] private float slowDown = 7f;
 
 
+    [SerializeField] float time = 0;
 
 
     // Start is called before the first frame update
@@ -28,10 +27,22 @@ public class Spinner : MonoBehaviour
         UICanvas.onSpin -= startSpinning;
 
     }
+
+    private void Update()
+    {
+        if (time > 0)
+        {
+            time -= Time.deltaTime;
+
+        }
+        if (time <= 0)
+        {
+            stop = true;
+        }
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
-
         spinning();
     }
 
@@ -40,6 +51,8 @@ public class Spinner : MonoBehaviour
         speed = speedMax;
         spin = true;
         stop = false;
+        time = Random.Range(4, 6);
+
     }
 
     void spinning()
