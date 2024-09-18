@@ -1,24 +1,20 @@
-using TMPro;
 using UnityEngine;
 
 public class CheckElement : MonoBehaviour
 {
-
-
     public static CheckElement instance;
 
     public string textElement;
-    // Start is called before the first frame update
+
+    public const string TAG_ELEMENT = "Element";
     void Start()
     {
         CheckElement.instance = this;
     }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Element"))
+        if (other.CompareTag(TAG_ELEMENT))
         {
-            Debug.Log(other.transform.name);
             textElement = other.transform.GetComponent<Element>().textElement.text;
         }
     }
