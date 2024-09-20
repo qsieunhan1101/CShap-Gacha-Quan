@@ -5,24 +5,26 @@ using UnityEngine.UI;
 
 public class UICanvas : MonoBehaviour
 {
-    [SerializeField] private Button btnSpin;
-    [SerializeField] public GameObject panel;
-    [SerializeField] public TextMeshProUGUI text;
+    [SerializeField] private GameObject panel;
+    [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private Button btn;
 
     public static UICanvas instance;
-    public static Action onSpin;
 
     void Start()
     {
         UICanvas.instance = this;
-        btnSpin.onClick.AddListener(Spin);
+        btn.onClick.AddListener(onClose);
     }
-    /// <summary>
-    /// goi ham Spinner.startSpinning() de bat dau quay
-    /// </summary>
-    void Spin()
+
+    void onClose()
     {
-        onSpin!.Invoke();
         panel.SetActive(false);
+    }
+    public void openUIClose(string text)
+    {
+        panel.SetActive(true);
+        this.text.text = text;
+
     }
 }

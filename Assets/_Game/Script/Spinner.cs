@@ -15,11 +15,9 @@ public class Spinner : MonoBehaviour
 
     private void OnEnable()
     {
-        UICanvas.onSpin += startSpinning;
     }
     private void OnDisable()
     {
-        UICanvas.onSpin -= startSpinning;
 
     }
 
@@ -81,8 +79,7 @@ public class Spinner : MonoBehaviour
         if (speed < 0)
         {
             speed = 0;
-            UICanvas.instance.panel.SetActive(true);
-            UICanvas.instance.text.text = $"Score: {stopAt}";
+
         }
     }
 }
